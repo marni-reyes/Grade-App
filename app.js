@@ -52,6 +52,26 @@ function getMySQLConnection() {
     });
 }
 
+
+app.get('/', function (req, res) {
+
+    // Connect to MySQL database.
+    var con2 = getMySQLConnection();
+    con2.connect();
+    // Do the query to get data.
+    con2.query('CALL edukasyon.sp_populate_tables();', function (err, result, fields) {
+        if (err) {
+            res.status(500).json({ "status_code": 500, "status_message": "internal server error" });
+        } else {
+            console.log("View Records processed.");
+        }
+    });
+    // Close the MySQL connection
+    con2.end();
+
+    res.render('index', { title: 'Welcome to Grading App!' });
+});
+
 app.get('/back', function (req, res) {
 
     // Connect to MySQL database.
@@ -262,19 +282,6 @@ app.post('/textupload', function (req, res) {
         con.end();
     });
 
-    // Connect to MySQL database.
-    var con2 = getMySQLConnection();
-    con2.connect();
-    // Do the query to get data.
-    con2.query('CALL edukasyon.sp_populate_tables();', function (err, result, fields) {
-        if (err) {
-            res.status(500).json({ "status_code": 500, "status_message": "internal server error" });
-        } else {
-            console.log("View Records processed.");
-        }
-    });
-    // Close the MySQL connection
-    con2.end();
     res.render('textupload');
     
 });
