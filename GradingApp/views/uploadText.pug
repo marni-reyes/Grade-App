@@ -1,0 +1,10 @@
+html
+  head
+    title Input Grades Text
+  body
+    h1 Input Grades Text
+    form(action="/textupload" method="post" enctype="multipart/form-data" name='form1' id='form1')
+      p
+        | Grades Text: 
+        textarea(rows="20", cols="100", name='texttoupload', id='texttoupload' form="form1")
+      input(type='submit', value='Submit')
