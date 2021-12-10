@@ -1,0 +1,2 @@
+C:\Users\Onerent-User\Documents\NodeJS\Express\GradingApp\GradingApp\obj\Debug\GradingApp.njsproj.CoreCompileInputs.cache
+C:\Users\Onerent-User\Documents\NodeJS\Express\GradingApp\GradingApp\bin\Microsoft.NodejsTools.WebRole.dll

@@ -1,0 +1,10 @@
+html
+  head
+    title Upload Grades File
+  body
+    h1 Upload Grades File
+    form(action="/fileupload" method="post" enctype="multipart/form-data")
+      p
+        | Grades File: 
+        input(type='file', name='filetoupload')
+      input(type='submit', value='Submit')
