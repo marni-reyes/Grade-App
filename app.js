@@ -470,7 +470,7 @@ app.post('/fileupload', function (req, res) {
     setTimeout(delayer, 1500, 'funky9');
 
     res.render('index', { title: 'File has been uploaded!' });
-
+    return res.end;
 });
 
 app.get('/Clear', function (req, res) {
