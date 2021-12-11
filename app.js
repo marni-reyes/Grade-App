@@ -56,8 +56,8 @@ function getMySQLConnection() {
 app.get('/', function (req, res) {
 
     // Connect to MySQL database.
-    var con2 = getMySQLConnection();
-    con2.connect();
+    var con3 = getMySQLConnection();
+    con3.connect();
     // Do the query to get data.
     con2.query('CALL edukasyon.sp_populate_tables();', function (err, result, fields) {
         if (err) {
@@ -67,7 +67,7 @@ app.get('/', function (req, res) {
         }
     });
     // Close the MySQL connection
-    con2.end();
+    con3.end();
 
     res.render('index', { title: 'Welcome to Grading App!' });
 });
@@ -75,10 +75,10 @@ app.get('/', function (req, res) {
 app.get('/back', function (req, res) {
 
     // Connect to MySQL database.
-    var con2 = getMySQLConnection();
-    con2.connect();
+    var con4 = getMySQLConnection();
+    con4.connect();
     // Do the query to get data.
-    con2.query('CALL edukasyon.sp_populate_tables();', function (err, result, fields) {
+    con4.query('CALL edukasyon.sp_populate_tables();', function (err, result, fields) {
         if (err) {
             res.status(500).json({ "status_code": 500, "status_message": "internal server error" });
         } else {
@@ -86,7 +86,7 @@ app.get('/back', function (req, res) {
         }
     });
     // Close the MySQL connection
-    con2.end();
+    con4.end();
 
     res.render('index', { title: 'Welcome to Grading App!' });
 });
@@ -472,10 +472,10 @@ app.post('/fileupload', function (req, res) {
         //console.log('SQL1');
         //console.log(sql1);
 
-        var con = getMySQLConnection();
-        con.connect();
+        var con5 = getMySQLConnection();
+        con5.connect();
 
-        con.query(sql1, function (err, result, fields) {
+        con5.query(sql1, function (err, result, fields) {
             if (err) {
                 //res.status(500).json({ "status_code": 500, "status_message": "internal server error" });
             } else {
@@ -484,34 +484,34 @@ app.post('/fileupload', function (req, res) {
         });
 
         // Close the MySQL connection
-        con.end();
+        con5.end();
     });
 
     // Connect to MySQL database.
-    var con2 = getMySQLConnection();
-    con2.connect();
+    var con6 = getMySQLConnection();
+    con6.connect();
     // Do the query to get data.
-    con2.query('CALL edukasyon.sp_populate_tables();', function (err, result, fields) {
+    con6.query('CALL edukasyon.sp_populate_tables();', function (err, result, fields) {
         if (err) {
             res.status(500).json({ "status_code": 500, "status_message": "internal server error" });
         } else {
             console.log("View Records processed.");
-            
         }
     });
     // Close the MySQL connection
-    con2.end();
+    con6.end();
+
     res.render('fileupload');
 
-    
+    return res.end();
 });
 
 app.get('/Clear', function (req, res) {
     // Connect to MySQL database.
-    var con = getMySQLConnection();
-    con.connect();
+    var con7 = getMySQLConnection();
+    con7.connect();
     // Do the query to get data.
-    con.query('CALL edukasyon.sp_clear_tables();', function (err, result, fields) {
+    con7.query('CALL edukasyon.sp_clear_tables();', function (err, result, fields) {
         if (err) {
             res.status(500).json({ "status_code": 500, "status_message": "internal server error" });
         } else {
@@ -520,7 +520,7 @@ app.get('/Clear', function (req, res) {
     });
 
     // Close the MySQL connection
-    con.end();
+    con7.end();
     
 });
 
@@ -535,11 +535,11 @@ app.get('/uploadFile', function (req, res) {
 
 app.get('/grades', function (req, res) {
 	// Connect to MySQL database.
-    var con = getMySQLConnection();
-    con.connect();
+    var con8 = getMySQLConnection();
+    con8.connect();
 
 	// Do the query to get data.
-	con.query('SELECT * FROM edukasyon.vw_grades;', function (err, result, fields) {
+    con8.query('SELECT * FROM edukasyon.vw_grades;', function (err, result, fields) {
 		if (err) {
 			res.status(500).json({ "status_code": 500, "status_message": "internal server error" });
         } else {
@@ -587,7 +587,7 @@ app.get('/grades', function (req, res) {
 	});
 
 	// Close the MySQL connection
-    con.end();
+    con8.end();
 
 });
 
