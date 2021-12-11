@@ -468,7 +468,7 @@ app.post('/fileupload', function (req, res) {
         // Close the MySQL connection
         con5.end();
     });
-    res.redirect('/fileuploadDone');
+    //res.redirect('/fileuploadDone');
     //res.render('index', { title: 'File has been uploaded!' });
     //return res.end;
 });
