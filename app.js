@@ -56,25 +56,6 @@ function delayer(arg) {
     console.log(`arg was => ${arg}`);
 }
 
-app.get('/', function (req, res) {
-
-    // Connect to MySQL database.
-    var con3 = getMySQLConnection();
-    con3.connect();
-    // Do the query to get data.
-    con2.query('CALL edukasyon.sp_populate_tables();', function (err, result, fields) {
-        if (err) {
-            res.status(500).json({ "status_code": 500, "status_message": "internal server error" });
-        } else {
-            console.log("View Records processed.");
-        }
-    });
-    // Close the MySQL connection
-    con3.end();
-
-    res.render('index', { title: 'Welcome to Grading App!' });
-});
-
 app.get('/back', function (req, res) {
 
     res.render('index', { title: 'Welcome to Grading App!' });
@@ -476,20 +457,6 @@ app.post('/fileupload', function (req, res) {
         con5.end();
     });
 
-    // Connect to MySQL database.
-    var con6 = getMySQLConnection();
-    con6.connect();
-    // Do the query to get data.
-    con6.query('CALL edukasyon.sp_populate_tables();', function (err, result, fields) {
-        if (err) {
-            res.status(500).json({ "status_code": 500, "status_message": "internal server error" });
-        } else {
-            console.log("View Records processed.");
-        }
-    });
-    // Close the MySQL connection
-    con6.end();
-
     //put a drelay to be able to process the uploaded file
     setTimeout(delayer, 1500, 'funky');
     setTimeout(delayer, 1500, 'funky1');
@@ -504,7 +471,6 @@ app.post('/fileupload', function (req, res) {
 
     res.render('index', { title: 'File has been uploaded!' });
 
-    return res.end();
 });
 
 app.get('/Clear', function (req, res) {
