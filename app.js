@@ -539,7 +539,7 @@ app.get('/grades', function (req, res) {
     con8.connect();
 
 	// Do the query to get data.
-    con8.query('SELECT * FROM edukasyon.vw_grades;', function (err, result, fields) {
+    con8.query('CALL edukasyon.sp_populate_tables();', function (err, result, fields) {
 		if (err) {
 			res.status(500).json({ "status_code": 500, "status_message": "internal server error" });
         } else {
@@ -548,6 +548,7 @@ app.get('/grades', function (req, res) {
             //console.log('StudentNames: ');
             //console.log(result.length);
 
+            result = result[0];
             for (var i = 0; i < result.length; i++) {
                 //console.log(i);
                 if ((curQuarter !== result[i].quarter) && (result[i].quarter == 100)) {
