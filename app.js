@@ -590,7 +590,7 @@ app.use(function (err, req, res, next) {
     });
 });
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 6277));
 
 // Start node server
 var server = app.listen(app.get('port'), function () {
