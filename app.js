@@ -451,6 +451,7 @@ app.post('/fileupload', function (req, res) {
             } else {
                 console.log("Records processed.");
                 //put a drelay to be able to process the uploaded file
+                /*
                 setTimeout(delayer, 1500, 'funky');
                 setTimeout(delayer, 1500, 'funky1');
                 setTimeout(delayer, 1500, 'funky2');
@@ -460,18 +461,22 @@ app.post('/fileupload', function (req, res) {
                 setTimeout(delayer, 1500, 'funky6');
                 setTimeout(delayer, 1500, 'funky7');
                 setTimeout(delayer, 1500, 'funky8');
-                setTimeout(delayer, 1500, 'funky9');
-
+                setTimeout(delayer, 1500, 'funky9');*/
             }
         });
 
         // Close the MySQL connection
         con5.end();
     });
-
+    res.redirect('/fileuploadDone');
     //res.render('index', { title: 'File has been uploaded!' });
-    return res.end;
+    //return res.end;
 });
+
+app.get('/fileuploadDone', function (req, res) {
+    res.render('fileupload');
+});
+
 
 app.get('/Clear', function (req, res) {
     // Connect to MySQL database.
