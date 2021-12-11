@@ -469,7 +469,7 @@ app.post('/fileupload', function (req, res) {
         con5.end();
     });
     //res.redirect('/fileuploadDone');
-    //res.render('index', { title: 'File has been uploaded!' });
+    res.render('index', { title: 'File has been uploaded!' });
     //return res.end;
 });
 
