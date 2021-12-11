@@ -52,6 +52,9 @@ function getMySQLConnection() {
     });
 }
 
+function delayer(arg) {
+    console.log(`arg was => ${arg}`);
+}
 
 app.get('/', function (req, res) {
 
@@ -268,8 +271,8 @@ app.post('/textupload', function (req, res) {
         con.end();
     });
 
-    res.render('textupload');
-    
+    res.render('index', { title: 'Text has been uploaded!' });
+
 });
 
 app.post('/fileupload', function (req, res) {
@@ -487,7 +490,19 @@ app.post('/fileupload', function (req, res) {
     // Close the MySQL connection
     con6.end();
 
-    res.render('fileupload');
+    //put a drelay to be able to process the uploaded file
+    setTimeout(delayer, 1500, 'funky');
+    setTimeout(delayer, 1500, 'funky1');
+    setTimeout(delayer, 1500, 'funky2');
+    setTimeout(delayer, 1500, 'funky3');
+    setTimeout(delayer, 1500, 'funky4');
+    setTimeout(delayer, 1500, 'funky5');
+    setTimeout(delayer, 1500, 'funky6');
+    setTimeout(delayer, 1500, 'funky7');
+    setTimeout(delayer, 1500, 'funky8');
+    setTimeout(delayer, 1500, 'funky9');
+
+    res.render('index', { title: 'File has been uploaded!' });
 
     return res.end();
 });
