@@ -472,8 +472,9 @@ app.post('/fileupload', function (req, res) {
     });
 
     //res.redirect('/fileuploadDone');
-    res.render('index', { title: 'File has been uploaded!' });
+    //res.render('index', { title: 'File has been uploaded!' });
     //return res.end;
+    res.send('<h1>File has been uploaded!</h1><br><a href="/">Back</a>');
 });
 
 app.get('/fileuploadDone', function (req, res) {
