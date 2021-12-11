@@ -74,20 +74,6 @@ app.get('/', function (req, res) {
 
 app.get('/back', function (req, res) {
 
-    // Connect to MySQL database.
-    var con4 = getMySQLConnection();
-    con4.connect();
-    // Do the query to get data.
-    con4.query('CALL edukasyon.sp_populate_tables();', function (err, result, fields) {
-        if (err) {
-            res.status(500).json({ "status_code": 500, "status_message": "internal server error" });
-        } else {
-            console.log("View Records processed.");
-        }
-    });
-    // Close the MySQL connection
-    con4.end();
-
     res.render('index', { title: 'Welcome to Grading App!' });
 });
 
