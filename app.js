@@ -266,6 +266,10 @@ app.post('/fileupload', function (req, res) {
     let dateTime = cDate + ' ' + cTime;
 
     var form = new formidable.IncomingForm();
+
+    var con5 = getMySQLConnection();
+    con5.connect();
+
     form.parse(req, function (err, fields, files) {
         var oldpath = files.filetoupload.filepath;
         var testType = null;
@@ -442,8 +446,6 @@ app.post('/fileupload', function (req, res) {
         //console.log('SQL1');
         //console.log(sql1);
 
-        var con5 = getMySQLConnection();
-        con5.connect();
 
         con5.query(sql1, function (err, result, fields) {
             if (err) {
@@ -462,12 +464,13 @@ app.post('/fileupload', function (req, res) {
                 setTimeout(delayer, 1500, 'funky7');
                 setTimeout(delayer, 1500, 'funky8');
                 setTimeout(delayer, 1500, 'funky9');*/
+                // Close the MySQL connection
+                con5.end();
             }
         });
 
-        // Close the MySQL connection
-        con5.end();
     });
+
     //res.redirect('/fileuploadDone');
     res.render('index', { title: 'File has been uploaded!' });
     //return res.end;
