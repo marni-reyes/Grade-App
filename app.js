@@ -52,6 +52,22 @@ function getMySQLConnection() {
     });
 }
 
+function processGrades(sql1) {
+    var con = getMySQLConnection();
+    con.connect();
+
+    con.query(sql1, function (err, result, fields) {
+        if (err) {
+            res.send(err);
+        } else {
+            console.log("Records processed.");
+        }
+    });
+
+    // Close the MySQL connection
+    con.end();
+    return 'Success';
+}
 function delayer(arg) {
     console.log(`arg was => ${arg}`);
 }
@@ -237,19 +253,7 @@ app.post('/textupload', function (req, res) {
         //console.log(sql1);
         //res.send(sql1);
         
-        var con = getMySQLConnection();
-        con.connect();
-        
-        con.query(sql1, function (err, result, fields) {
-            if (err) {
-                res.send(err);
-            } else {
-                console.log("Records processed.");
-            }
-        });
-        
-        // Close the MySQL connection
-        con.end();
+        var g = processGrades(sql1);
     });
 
     res.render('index', { title: 'Text has been uploaded!' });
@@ -446,35 +450,15 @@ app.post('/fileupload', function (req, res) {
         //console.log('SQL1');
         //console.log(sql1);
 
-
-        con5.query(sql1, function (err, result, fields) {
-            if (err) {
-                //res.status(500).json({ "status_code": 500, "status_message": "internal server error" });
-            } else {
-                console.log("Records processed.");
-                //put a drelay to be able to process the uploaded file
-                /*
-                setTimeout(delayer, 1500, 'funky');
-                setTimeout(delayer, 1500, 'funky1');
-                setTimeout(delayer, 1500, 'funky2');
-                setTimeout(delayer, 1500, 'funky3');
-                setTimeout(delayer, 1500, 'funky4');
-                setTimeout(delayer, 1500, 'funky5');
-                setTimeout(delayer, 1500, 'funky6');
-                setTimeout(delayer, 1500, 'funky7');
-                setTimeout(delayer, 1500, 'funky8');
-                setTimeout(delayer, 1500, 'funky9');*/
-                // Close the MySQL connection
-                con5.end();
-            }
-        });
+        var g = processGrades(sql1);
 
     });
 
-    //res.redirect('/fileuploadDone');
+    res.redirect('/fileuploadDone');
     //res.render('index', { title: 'File has been uploaded!' });
-    //return res.end;
+    return res.end;
     //res.send('<h1>File has been uploaded!</h1><br><a href="/">Back</a>');
+
 });
 
 app.get('/fileuploadDone', function (req, res) {
