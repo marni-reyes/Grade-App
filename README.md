@@ -38,3 +38,13 @@ Homework grades are preceded by an ‘H’ and test grades are preceded by a ‘
   * Clears all the grades of students.
   
 # Database Definitions
+* Database Folder in the Git holds Database Objects Definitions. 
+* Tables
+  * grades_raw - table used to process input from users
+  * student - processed to hold student data
+  * grades - processed to hold grade data
+* Views
+  * vw_grades - view of calculated grades (removes lowest homework score)
+* Stored Procedures
+  * sp_clear_tables - clears all tables. used to clear data of students.
+  * sp_populate_tables - used to populate student and grades table from grades_raw
